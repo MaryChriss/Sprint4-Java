@@ -50,13 +50,20 @@ public class LoginDAOImpl implements LoginDAO {
 
 
     @Override
-    public boolean autenticar(String email, String senha) throws SQLException {
+    public Login autenticar(String email, String senha) throws SQLException {
         String sql = "SELECT * FROM TB_LOGIN WHERE email = ? AND senha = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, email);
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
-            return rs.next();
+            if (rs.next()) {
+                int idLogin = rs.getInt("id_login");
+                int idCliente = rs.getInt("id_cliente");
+                String senhaRetornada = rs.getString("senha");
+                Cliente cliente = clienteDAO.buscarClienteId(idCliente);
+                return new Login(cliente, email, idLogin, senhaRetornada);
+            }
+            return null;
         }
     }
 

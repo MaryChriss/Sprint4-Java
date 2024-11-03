@@ -41,17 +41,13 @@ public class LoginResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response autenticar(Login login) {
         try {
-            boolean valid = loginBO.autenticar(login);
-            if (valid) {
-                return Response.status(Response.Status.ACCEPTED).entity("Login autenticado").build();
-            } else {
-                return Response.status(Response.Status.FORBIDDEN)
-                        .entity("Email ou senha invalidos").build();
-            }
+            Login loginAutenticado = loginBO.autenticar(login);
+            return Response.status(Response.Status.ACCEPTED).entity(loginAutenticado).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
         } catch (SQLException e) {
             e.printStackTrace();
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("Erro ao autenticar login").build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Erro ao autenticar login").build();
         }
     }
 

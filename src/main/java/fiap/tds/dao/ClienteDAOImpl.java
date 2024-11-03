@@ -12,9 +12,7 @@ import java.util.List;
 import static fiap.tds.Credenciais.Credenciais.url;
 
 public class ClienteDAOImpl implements ClienteDAO{
-
     private Connection conn;
-
     public ClienteDAOImpl() throws SQLException {
         OracleDataSource ods = new OracleDataSource();
         ods.setURL(url);

@@ -14,7 +14,7 @@ public class LoginBO {
         this.loginDAO = new LoginDAOImpl();
     }
 
-    public boolean autenticar(Login login) throws SQLException {
+    public Login autenticar(Login login) throws SQLException {
         if (!validarEmail(login.getEmail_login())) {
             throw new IllegalArgumentException("Email inválido. Certifique-se de que contém '@' e um domínio válido.");
         }
@@ -23,7 +23,12 @@ public class LoginBO {
             throw new IllegalArgumentException("Senha inválida. A senha deve ter pelo menos 6 caracteres.");
         }
 
-        return loginDAO.autenticar(login.getEmail_login(), login.getSenha_login());
+        Login loginAutenticado = loginDAO.autenticar(login.getEmail_login(), login.getSenha_login());
+        if (loginAutenticado == null) {
+            throw new IllegalArgumentException("Email ou senha invalidos");
+        }
+
+        return loginAutenticado;
     }
 
     public Login inserirLogin(Login login) throws SQLException {
