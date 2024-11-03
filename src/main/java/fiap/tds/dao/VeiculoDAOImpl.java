@@ -16,13 +16,12 @@ public class VeiculoDAOImpl implements VeiculoDAO {
 
     @Override
     public void adicionarVeiculo(Veiculo veiculo) throws SQLException {
-        String sql = "INSERT INTO TB_VEICULO (id_veiculo, id_cliente, modelo, marca, ano) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_VEICULO (id_veiculo, id_cliente, modelo, marca, ano) VALUES (veiculo_seq.NEXTVAL, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, veiculo.getId_veiculo());
-            pstmt.setInt(2, veiculo.getCliente().getId_cliente());
-            pstmt.setString(3, veiculo.getModelo());
-            pstmt.setString(4, veiculo.getMarca());
-            pstmt.setInt(5, veiculo.getAno());
+            pstmt.setInt(1, veiculo.getCliente().getId_cliente());
+            pstmt.setString(2, veiculo.getModelo());
+            pstmt.setString(3, veiculo.getMarca());
+            pstmt.setInt(4, veiculo.getAno());
             pstmt.executeUpdate();
         }
     }
