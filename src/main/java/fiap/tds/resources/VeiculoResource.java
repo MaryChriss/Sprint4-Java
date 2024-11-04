@@ -64,4 +64,15 @@ public class VeiculoResource {
         }
         return Response.ok(veiculo).build();
     }
+
+    @GET
+    @Path("/getByClient/{id_cliente}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarVeiculoPorIdCliente(@PathParam("id_cliente") int id) throws SQLException {
+        Veiculo veiculo = veiculoBO.buscarVeiculoPorIdCliente(id);
+        if (veiculo == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Veículo não encontrado").build();
+        }
+        return Response.ok(veiculo).build();
+    }
 }

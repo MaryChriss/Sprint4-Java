@@ -12,5 +12,7 @@ public interface VeiculoDAO {
     void excluirVeiculo(int id_veiculo) throws SQLException;
     List<Veiculo> listarVeiculos() throws SQLException;
     public Veiculo buscarVeiculoPorId(int id_veiculo) throws SQLException;
+    public Veiculo buscarVeiculoPorIdCliente(int idCliente) throws SQLException;
+
 }
 

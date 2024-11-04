@@ -96,4 +96,25 @@ public class VeiculoDAOImpl implements VeiculoDAO {
         }
         return null;
     }
+
+    public Veiculo buscarVeiculoPorIdCliente(int idCliente) throws SQLException {
+        String sql = "SELECT * FROM TB_VEICULO WHERE id_cliente = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idCliente);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                ClienteDAOImpl clienteDAO = new ClienteDAOImpl();
+                Cliente cliente = clienteDAO.buscarClienteId(rs.getInt("id_cliente"));
+                return new Veiculo(
+                        rs.getInt("id_veiculo"),
+                        cliente,
+                        rs.getString("modelo"),
+                        rs.getString("marca"),
+                        rs.getInt("ano")
+                );
+            }
+        }
+        return null;
+    }
 }

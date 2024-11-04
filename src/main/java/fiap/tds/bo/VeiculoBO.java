@@ -74,4 +74,8 @@ public class VeiculoBO {
         int anoAtual = java.time.Year.now().getValue();
         return ano >= 1886 && ano <= anoAtual;
     }
+
+    public Veiculo buscarVeiculoPorIdCliente(int idCliente) throws SQLException {
+        return veiculoDAO.buscarVeiculoPorIdCliente(idCliente);
+    }
 }
