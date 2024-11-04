@@ -1,9 +1,5 @@
 package fiap.resources;
 
-import fiap.tds.beans.Problema;
-import fiap.tds.bo.ProblemaBO;
-import fiap.tds.dao.ProblemaDAOImpl;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.sql.SQLException;

@@ -2,7 +2,6 @@
 <body>
     <h2>Jersey RESTful Web Application!</h2>
 
-    <p><a href="webapi/myresource">Jersey Resource</a></p>
 
     <p><a href="/javasprint/webapi/cliente">Cliente Resource</a></p>
 
@@ -12,9 +11,9 @@
 
     <p><a href="/javasprint/webapi/veiculo">Veiculos Resource</a></p>
 
-    <p><a href="/javasprint/webapi/problema">Problema Resource</a></p>
-
     <p><a href="/javasprint/webapi/solucao">Solucao Resource</a></p>
+
+    <p><a href="/javasprint/webapi/respostas">Respostas Resource</a></p>
 
     <p><a href="/javasprint/webapi/solucaoMaoDeObra">Solucao mao de obra Resource</a></p>
 

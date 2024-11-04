@@ -1,9 +1,7 @@
 package fiap.tds.bo;
 
-
 import fiap.tds.beans.SolucaoMaoDeObra;
 import fiap.tds.dao.MaoDeObraDAO;
-
 import java.sql.SQLException;
 import java.util.List;
 

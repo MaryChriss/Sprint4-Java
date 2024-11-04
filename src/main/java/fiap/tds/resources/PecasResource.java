@@ -1,8 +1,8 @@
 package fiap.tds.resources;
 
-import fiap.tds.beans.Cliente;
 import fiap.tds.beans.Pecas;
 import fiap.tds.bo.PecasBO;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class PecasResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response atualizarPeca(@PathParam("id") int idPeca, Pecas peca) {
         try {
-            peca.setId_peca(idPeca); // Garante que o id da URL seja o da peça
+            peca.setId_peca(idPeca);
             pecasBO.atualizarPeca(peca);
             return Response.ok("Peça atualizada com sucesso.").build();
         } catch (SQLException e) {
@@ -70,8 +70,7 @@ public class PecasResource {
     // Listar todas as peças (GET)
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Pecas> listarPecas() throws SQLException {
-        return (ArrayList<Pecas>) pecasBO.listarPecas();
+    public List<Pecas> listarPecas() throws SQLException {
+        return pecasBO.listarPecas();
     }
-
 }

@@ -2,21 +2,13 @@ package fiap.tds.beans;
 
 public class Pecas {
     private int id_peca;
-    private Solucao solucao;
-    public String nome_peca;
-    private int preco_peca;
+    private String nome_peca;
+    private double preco_peca;
 
-    public Pecas() {
-    }
-
-    public Pecas(int id_peca, String nome_peca, int preco_peca, Solucao solucao) {
+    public Pecas(int id_peca, String nome_peca, double preco_peca) {
         this.id_peca = id_peca;
         this.nome_peca = nome_peca;
         this.preco_peca = preco_peca;
-        this.solucao = solucao;
-    }
-
-    public Pecas(int idPeca, String nomePeca, String precoPeca) {
     }
 
     public int getId_peca() {
@@ -35,19 +27,11 @@ public class Pecas {
         this.nome_peca = nome_peca;
     }
 
-    public int getPreco_peca() {
+    public double getPreco_peca() {
         return preco_peca;
     }
 
-    public void setPreco_peca(int preco_peca) {
+    public void setPreco_peca(double preco_peca) {
         this.preco_peca = preco_peca;
-    }
-
-    public Solucao getSolucao() {
-        return solucao;
-    }
-
-    public void setSolucao(Solucao solucao) {
-        this.solucao = solucao;
     }
 }

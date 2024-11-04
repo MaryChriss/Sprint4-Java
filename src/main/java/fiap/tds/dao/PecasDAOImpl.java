@@ -26,7 +26,7 @@ public class PecasDAOImpl implements PecasDAO {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, peca.getId_peca());
             stmt.setString(2, peca.getNome_peca());
-            stmt.setInt(3, peca.getPreco_peca());
+            stmt.setDouble(3, peca.getPreco_peca()); // Alterado para setDouble
             stmt.executeUpdate();
         }
     }
@@ -36,17 +36,8 @@ public class PecasDAOImpl implements PecasDAO {
         String sql = "UPDATE TB_PECAS SET nome_peca = ?, preco_peca = ? WHERE id_peca = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, peca.getNome_peca());
-            stmt.setInt(2, peca.getPreco_peca());
+            stmt.setDouble(2, peca.getPreco_peca()); // Alterado para setDouble
             stmt.setInt(3, peca.getId_peca());
-            stmt.executeUpdate();
-        }
-    }
-
-    @Override
-    public void excluirPeca(int idPeca) throws SQLException {
-        String sql = "DELETE FROM TB_PECAS WHERE id_peca = ?";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, idPeca);
             stmt.executeUpdate();
         }
     }
@@ -59,12 +50,11 @@ public class PecasDAOImpl implements PecasDAO {
             stmt.setInt(1, idPeca);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                peca = new Pecas(rs.getInt("id_peca"), rs.getString("nome_peca"), rs.getString("preco_peca"));
+                peca = new Pecas(rs.getInt("id_peca"), rs.getString("nome_peca"), rs.getDouble("preco_peca")); // Alterado para getDouble
             }
         }
         return peca;
     }
-
 
     @Override
     public List<Pecas> listarPecas() throws SQLException {
@@ -73,11 +63,25 @@ public class PecasDAOImpl implements PecasDAO {
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                Pecas peca = new Pecas(rs.getInt("ID_PECA"), rs.getString("NOME_PECA"), rs.getString("PRECO_PECA"));
+                Pecas peca = new Pecas(
+                        rs.getInt("ID_PECA"),
+                        rs.getString("NOME_PECA"),
+                        rs.getDouble("PRECO_PECA") // Alterado para getDouble
+                );
                 pecasList.add(peca);
             }
         }
         return pecasList;
+    }
+
+
+    @Override
+    public void excluirPeca(int idPeca) throws SQLException {
+        String sql = "DELETE FROM TB_PECAS WHERE id_peca = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idPeca);
+            stmt.executeUpdate();
+        }
     }
 
 }

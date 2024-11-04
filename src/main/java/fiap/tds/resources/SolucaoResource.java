@@ -17,7 +17,7 @@ public class SolucaoResource {
     private SolucaoBO solucaoBO;
 
     public SolucaoResource() throws SQLException {
-        Connection conn = Credenciais.getConnection();  // Usando a classe Credenciais para obter a conexão
+        Connection conn = Credenciais.getConnection();
         this.solucaoBO = new SolucaoBO(new SolucaoDAOImpl(conn));
     }
 
@@ -34,7 +34,7 @@ public class SolucaoResource {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response atualizarSolucao(@PathParam("id") int id, Solucao solucao) throws SQLException {
-        solucao.setIdSolucao(id);  // Definir ID antes de atualizar
+        solucao.setIdSolucao(id);
         solucaoBO.atualizarSolucao(solucao);
         return Response.ok("Solução atualizada com sucesso!").build();
     }
@@ -43,24 +43,19 @@ public class SolucaoResource {
     @Path("/{id}")
     public Response excluirSolucao(@PathParam("id") int id) throws SQLException {
         solucaoBO.excluirSolucao(id);
-        return Response.ok("Solução excluída com sucesso!").build();
+        return Response.noContent().build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listarSolucoes() throws SQLException {
-        List<Solucao> solucoes = solucaoBO.listarSolucoes();
-        return Response.ok(solucoes).build();
+    public List<Solucao> listarSolucoes() throws SQLException {
+        return solucaoBO.listarSolucoes();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response buscarSolucaoPorId(@PathParam("id") int id) throws SQLException {
-        Solucao solucao = solucaoBO.buscarSolucaoPorId(id);
-        if (solucao == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Solução não encontrada").build();
-        }
-        return Response.ok(solucao).build();
+    public Solucao buscarSolucaoPorId(@PathParam("id") int id) throws SQLException {
+        return solucaoBO.buscarSolucaoPorId(id);
     }
 }

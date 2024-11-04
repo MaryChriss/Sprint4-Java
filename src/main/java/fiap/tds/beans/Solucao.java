@@ -2,25 +2,17 @@ package fiap.tds.beans;
 
 public class Solucao {
     private int idSolucao;
-    private String contato_mecanico_solucao;
-    private String localizacao_oficina_solucao;
-    private String solucao_final_solucao;
+    private int idPerguntaResposta;
+    private String problema;
+    private String solucaoFinal;
 
     public Solucao() {}
 
-    public Solucao(String contato_mecanico_solucao, int idSolucao, String localizacao_oficina_solucao, String solucao_final_solucao) {
-        this.contato_mecanico_solucao = contato_mecanico_solucao;
+    public Solucao(int idSolucao, int idPerguntaResposta, String problema, String solucaoFinal) {
         this.idSolucao = idSolucao;
-        this.localizacao_oficina_solucao = localizacao_oficina_solucao;
-        this.solucao_final_solucao = solucao_final_solucao;
-    }
-
-    public String getContato_mecanico_solucao() {
-        return contato_mecanico_solucao;
-    }
-
-    public void setContato_mecanico_solucao(String contato_mecanico_solucao) {
-        this.contato_mecanico_solucao = contato_mecanico_solucao;
+        this.idPerguntaResposta = idPerguntaResposta;
+        this.problema = problema;
+        this.solucaoFinal = solucaoFinal;
     }
 
     public int getIdSolucao() {
@@ -31,19 +23,27 @@ public class Solucao {
         this.idSolucao = idSolucao;
     }
 
-    public String getLocalizacao_oficina_solucao() {
-        return localizacao_oficina_solucao;
+    public int getIdPerguntaResposta() {
+        return idPerguntaResposta;
     }
 
-    public void setLocalizacao_oficina_solucao(String localizacao_oficina_solucao) {
-        this.localizacao_oficina_solucao = localizacao_oficina_solucao;
+    public void setIdPerguntaResposta(int idPerguntaResposta) {
+        this.idPerguntaResposta = idPerguntaResposta;
     }
 
-    public String getSolucao_final_solucao() {
-        return solucao_final_solucao;
+    public String getProblema() {
+        return problema;
     }
 
-    public void setSolucao_final_solucao(String solucao_final_solucao) {
-        this.solucao_final_solucao = solucao_final_solucao;
+    public void setProblema(String problema) {
+        this.problema = problema;
+    }
+
+    public String getSolucaoFinal() {
+        return solucaoFinal;
+    }
+
+    public void setSolucaoFinal(String solucaoFinal) {
+        this.solucaoFinal = solucaoFinal;
     }
 }
